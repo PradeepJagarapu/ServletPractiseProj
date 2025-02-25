@@ -15,6 +15,5 @@
 	<h2>Welcome <%=name%></h2>
 	<h2>Your email is:<%=email %></h2>
 	<h2>Your phone number is:<%=phno %></h2>
-	<a href="Profile2.jsp">profile2</a>
 </body>
 </html>

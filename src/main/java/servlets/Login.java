@@ -6,6 +6,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -35,6 +37,7 @@ public class Login extends HttpServlet {
 		String name=request.getParameter("name");
 		String password=request.getParameter("password");
 		try {
+			HttpSession hs=request.getSession();
 			Connection con=DBConnection.getCon();
 			String query="select * from users where name=? && password=?";
 			
@@ -48,9 +51,9 @@ public class Login extends HttpServlet {
 				String email=rs.getString(3);
 				int phno=rs.getInt(4);
 				
-				request.setAttribute("name", name);
-				request.setAttribute("email", email);
-				request.setAttribute("phno", phno);
+				hs.setAttribute("name", name);
+				hs.setAttribute("email", email);
+				hs.setAttribute("phno", phno);
 				
 				RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");
 				rd.forward(request, response);
