@@ -41,12 +41,32 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Logout</display-name>
-    <servlet-name>Logout</servlet-name>
-    <servlet-class>servlets.Logout</servlet-class>
+    <display-name>DisplayAll</display-name>
+    <servlet-name>DisplayAll</servlet-name>
+    <servlet-class>servlets.DisplayAll</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Logout</servlet-name>
-    <url-pattern>/Logout</url-pattern>
+    <servlet-name>DisplayAll</servlet-name>
+    <url-pattern>/DisplayAll</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Edit</display-name>
+    <servlet-name>Edit</servlet-name>
+    <servlet-class>servlets.Edit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Edit</servlet-name>
+    <url-pattern>/Edit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Update</display-name>
+    <servlet-name>Update</servlet-name>
+    <servlet-class>servlets.Update</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Update</servlet-name>
+    <url-pattern>/Update</url-pattern>
   </servlet-mapping>
 </web-app>
