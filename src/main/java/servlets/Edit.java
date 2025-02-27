@@ -43,7 +43,7 @@ public class Edit extends HttpServlet {
 			ResultSet rs=ps.executeQuery();
 			
 			if(rs.next()) {
-				pw.println("<form action='Update' method='post'>");
+				pw.println("<form action='Update'>");
 				pw.println("<input type=\"text\" name=\"name\" readonly value="+rs.getString(1)+">");
 				pw.println("<input type=\"text\" name=\"pwd\" value="+rs.getString(2)+">");
 				pw.println("<input type=\"text\" name=\"email\" value="+rs.getString(3)+">");

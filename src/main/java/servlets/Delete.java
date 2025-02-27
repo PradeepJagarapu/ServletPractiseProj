@@ -1,6 +1,8 @@
 package servlets;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,19 +10,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Servlet implementation class DisplayAll
+ * Servlet implementation class Delete
  */
-public class DisplayAll extends HttpServlet {
+public class Delete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DisplayAll() {
+    public Delete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,43 +30,28 @@ public class DisplayAll extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		PrintWriter pw=response.getWriter();
-		response.setContentType("text/html");
-
+		String name=request.getParameter("uname");
 		try {
 			Connection con=DBConnection.getCon();
-			String query="select * from users";
+			String query="delete from users  where name=?";
 			
 			PreparedStatement ps=con.prepareStatement(query);
+			ps.setString(1, name);
 			
-			ResultSet rs=ps.executeQuery();
+			int i=ps.executeUpdate();
 			
-			pw.println("<table border=4>");
-			pw.println("<tr>");
-			pw.println("<th>Name</th>");
-			pw.println("<th>Password</th>");
-			pw.println("<th>Email</th>");
-			pw.println("<th>Phno</th>");
-			pw.println("<th>Edit</th>");
-			pw.println("<th>Delete</th>");
-			pw.println("</tr>");
-
-			while(rs.next()) {
-				pw.println("<tr>");
-				pw.println("<td>"+rs.getString(1)+"</td>");
-				pw.println("<td>"+rs.getString(2)+"</td>");	
-				pw.println("<td>"+rs.getString(3)+"</td>");
-				pw.println("<td>"+rs.getInt(4)+"</td>");
-				pw.println("<td><a href='Edit?uname="+rs.getString(1)+"'>edit</a></td>");
-				pw.println("<td><a href='Delete?uname="+rs.getString(1)+"'>delete</a></td>");
-				pw.println("</tr>");
+			if(i>0) {
+				RequestDispatcher rd=request.getRequestDispatcher("DisplayAll");
+				rd.forward(request, response);
+			}else {
+				pw.print("something went wrong ,submit again");
 			}
-			
-			pw.println("</table>");
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 	}
 
 }

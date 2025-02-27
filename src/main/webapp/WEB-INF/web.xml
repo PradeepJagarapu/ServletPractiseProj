@@ -69,4 +69,24 @@
     <servlet-name>Update</servlet-name>
     <url-pattern>/Update</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Delete</display-name>
+    <servlet-name>Delete</servlet-name>
+    <servlet-class>servlets.Delete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Delete</servlet-name>
+    <url-pattern>/Delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FormHiddenField</display-name>
+    <servlet-name>FormHiddenField</servlet-name>
+    <servlet-class>servlets.FormHiddenField</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormHiddenField</servlet-name>
+    <url-pattern>/FormHiddenField</url-pattern>
+  </servlet-mapping>
 </web-app>
